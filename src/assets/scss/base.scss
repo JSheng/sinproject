@@ -1,9 +1,15 @@
 * {margin:0px;padding:0px;}
 @each $margin in 2,4,6,8,10,20,30,50{
-  .margin#{$margin} {margin:$margin*1px;}
+  .marginT#{$margin} {margin-top:$margin*1px !important;}
+  .marginL#{$margin} {margin-left:$margin*1px !important;}
+  .marginR#{$margin} {margin-right:$margin*1px !important;}
+  .marginB#{$margin} {margin-buttom:$margin*1px !important;}
 }
 @each $padding in 2,4,6,8,10,20,30,50{
-  .padding#{$padding} {padding:$padding*1px;}
+  .paddingT#{$padding} {padding-top:$padding*1px !important;}
+  .paddingL#{$padding} {padding-left:$padding*1px !important;}
+  .paddingR#{$padding} {padding-right:$padding*1px !important;}
+  .paddingB#{$padding} {padding-bottom:$padding*1px !important;}
 }
 @each $height in 2,4,5,10,15,20,25,30,35,40{
   .h#{$height} {height:$height*1px;}
@@ -19,4 +25,14 @@
 }
 @each $float in left,center,right{
   .text-#{$float} {float :$float;}
+}
+
+.view-fix {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
 }

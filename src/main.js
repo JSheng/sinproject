@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
 import {createRouter} from './router'
-import '@babel/polyfill'
 import './plugins/iview.js';
 
 // 导出一个工厂函数，用于创建新的

@@ -3,7 +3,6 @@ import { createApp } from '@/main';
 import '@babel/polyfill';
 import api from '@/api' // 导入api接口
 import '../assets/scss/base.scss';
-import '../plugins/iview.js';
 
 Vue.config.productionTip = false;
 Vue.prototype.$http = api; // 将api挂载到vue

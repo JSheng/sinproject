@@ -49,6 +49,31 @@ module.exports = {
         output: {
             libraryTarget: TARGET_NODE ? "commonjs2" : undefined
         },
+        module:{
+            rules: [
+                {
+                    test: /\.vue$/,
+                    loader: 'vue-loader',
+                    options: {
+                        loaders: {
+                            js: [
+                                { loader: 'cache-loader' },
+                                { loader: 'babel-loader', options: { presets: ['env'] } }
+                            ],
+                            ts: [
+                                { loader: 'cache-loader' },
+                                { loader: 'babel-loader', options: { presets: ['env'] } }
+                            ],
+                            scss: [
+                                'style-loader',
+                                'css-loader',
+                                'sass-loader'
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
         // https://webpack.js.org/configuration/externals/#function
         // https://github.com/liady/webpack-node-externals
         // 外置化应用程序依赖模块。可以使服务器构建速度更快，
@@ -103,7 +128,6 @@ module.exports = {
                 }
             ]]);
         }
-
         config.module
             .rule("vue")
             .use("vue-loader")
@@ -112,7 +136,6 @@ module.exports = {
                     optimizeSSR: false
                 });
             });
-
         // fix ssr hot update bug
         if (TARGET_NODE) {
             config.resolve.symlinks(true);

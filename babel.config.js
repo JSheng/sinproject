@@ -4,7 +4,9 @@ const plugins = [[
         "libraryName": "iview",
         "libraryDirectory": "src/components"
     }
-],"syntax-dynamic-import","dynamic-import-webpack"];
+],"syntax-dynamic-import","dynamic-import-webpack",
+["@babel/plugin-proposal-decorators",{"legacy": true}],["@babel/plugin-proposal-class-properties",{"loose": true}]
+];
 if(['production','prod'].includes(process.env.NODE_ENV)) {
     plugins.push("transform-remove-console")
 }

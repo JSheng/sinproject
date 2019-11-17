@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { LoadingBar } from 'iview';
+//import { LoadingBar } from 'iview';
 
 Vue.use(VueRouter);
 let routes = [];
@@ -16,17 +16,16 @@ routerContext.keys().forEach(route => {
 });
 function getAbsolutePath () {
     let path = location.pathname;
-    console.log("项目名："+path);
     return path.substring(0, path.lastIndexOf('/') + 1);
 }
 export function createRouter(){
     let router = new VueRouter({mode: 'history',routes,base:getAbsolutePath()});
-        router.beforeEach((to, from, next) => {
+       /* router.beforeEach((to, from, next) => {
             LoadingBar.start();
             next();
         });
         router.afterEach(() => {
             LoadingBar.finish();
-        });
+        });*/
     return router;
-};
+}

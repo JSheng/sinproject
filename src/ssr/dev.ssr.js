@@ -22,6 +22,7 @@ serverCompiler.watch({}, (err, stats) =>{
     if (err) {
         throw err
     }
+  // eslint-disable-next-line no-param-reassign
     stats = stats.toJson()
     stats.errors.forEach(error => console.error(error) )
     stats.warnings.forEach( warn => console.warn(warn) )
@@ -33,19 +34,18 @@ serverCompiler.watch({}, (err, stats) =>{
     console.log('new bundle generated')
 })
 // 处理请求
-const handleRequest = async ctx => {
-    console.log('path', ctx.path)
+const handleRequest = async (ctx) => {
     if (!bundle) {
-        ctx.body = '等待webpack打包完成后在访问在访问'
+        ctx.body = '等待webpack打包完成后在访问'
         return
     }
     // 4、获取最新的 vue-ssr-client-manifest.json
-    const clientManifestResp = await axios.get(`http://localhost:${process.env.VUE_APP_CLIENT_PORT}/vue-ssr-client-manifest.json`)
+    const clientManifestResp = await axios.get(`http://localhost:${process.env.VUE_APP_CLIENT_PORT}/${process.env.VUE_APP_PROJECT_NAME}/vue-ssr-client-manifest.json`)
     const clientManifest = clientManifestResp.data
 
     const renderer = createBundleRenderer(bundle, {
         runInNewContext: false,
-        template: fs.readFileSync(path.resolve(__dirname, "../src/index.template.html"), "utf-8"),
+        template: fs.readFileSync(path.resolve(__dirname, "../index.template.html"), "utf-8"),
         clientManifest: clientManifest
     });
     const html = await renderToString(ctx,renderer)
@@ -61,7 +61,6 @@ function renderToString(context,renderer) {
 
 const app = new Koa();
 const router = new Router()
-
 router.get("*", handleRequest);
 app.use(router.routes()).use(router.allowedMethods())
 const resolve = file => path.resolve(__dirname, file);

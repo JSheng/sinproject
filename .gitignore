@@ -1,7 +1,8 @@
 .DS_Store
 node_modules
-/dist
-
+/package
+HatchProject.iml
+yarn-lock.json
 # local env files
 .env.local
 .env.*.local

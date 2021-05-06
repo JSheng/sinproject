@@ -1,1 +1,3 @@
-{"apiURL":"http://localhost:8080/iind"}
+{
+  "baseUrl": "https://www.fastmock.site/mock/edcca8f41e86df5cd6d70f55fb2a1a50/iind"
+}
